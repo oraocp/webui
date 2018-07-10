@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>jspXCMS管理平台</title>
+    <meta name="renderer" content="webkit">
+    <!-- <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport"> -->
+    <script>if (top != this) {
+        top.location = this.location;
+    }</script>
+    <link rel="stylesheet" href="static/vendor/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="static/vendor/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="static/vendor/ionicons/css/ionicons.min.css">
+    <link rel="stylesheet" href="static/vendor/adminlte/css/AdminLTE.min.css">
+    <link rel="stylesheet" href="static/vendor/adminlte/css/skins/skin-blue.min.css">
+    <link rel="stylesheet" href="static/css/main.css">
+    <!--[if lt IE 9]>
+    <script src="static/vendor/html5shiv/html5shiv.min.js"></script>
+    <script src="static/vendor/respond/respond.min.js"></script>
+    <![endif]-->
+</head>
+<body class="hold-transition skin-blue sidebar-mini">
+<!--  style="overflow:visible;" -->
+<div class="wrapper" style="overflow:visible;">
+    <header class="main-header">
+        <!-- Logo -->
+        <a href="index.do" class="logo">
+            <!-- mini logo for sidebar mini 50x50 pixels -->
+            <span class="logo-mini"><b></b>CMS</span>
+            <!-- logo for regular state and mobile devices -->
+            <span class="logo-lg"><b>jspX</b>CMS</span>
+        </a>
+
+        <!-- Header Navbar -->
+        <nav class="navbar navbar-static-top" role="navigation">
+            <!-- Sidebar toggle button-->
+            <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button">
+                <span class="sr-only">Toggle navigation</span>
+            </a>
+            <!-- Navbar Right Menu -->
+            <div class="navbar-custom-menu">
+                <ul class="nav navbar-nav">
+                    <li style="padding:10px 5px 0 ;">
+                        <select class="form-control input-sm" onchange="location.href='index.do?_site='+$(this).val();"
+                                style="border-radius:4px;background-color:#ecf0f5;">
+
+                            <option value="1" selected="selected">Jspxcms演示主站(集团总部)</option>
+
+                        </select>
+                    </li>
+                    <li>
+                        <a href="/" target="_blank" title="网站首页">
+                            <i class="glyphicon glyphicon-home"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="core/homepage/notification_list.do" target="center" title="我的通知">
+                            <i class="fa fa-bell-o"></i>
+                            <span id="notificationCount" class="label label-warning"></span>
+                        </a>
+                    </li>
+                    <li class="user-menu">
+                        <a href="javascript:;">
+                            <!-- The user image in the navbar-->
+                            <img src="static/img/anonymous.png" class="user-image" alt="User Image">
+                            <!-- hidden-xs hides the username on small devices so only the image appears. -->
+                            <span class="hidden-xs">test</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="logout.do" title="退出">
+                            <span>退出</span> <i class="glyphicon glyphicon-log-out"></i>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+    <!-- Left side column. contains the logo and sidebar -->
+    <aside class="main-sidebar">
+        <!-- sidebar: style can be found in sidebar.less -->
+        <section class="sidebar">
+            <!-- Sidebar Menu -->
+            <ul class="sidebar-menu">
+                <!-- <li class="header">功能导航</li> -->
+
+
+                <li class="treeview active">
+                    <a href='javascript:;'><i class="fa fa-dashboard"></i> <span>工作台</span>
+                        <span class="pull-right-container">
+			              <i class="fa fa-angle-left pull-right"></i>
+			            </span>
+                    </a>
+                    <ul class="treeview-menu">
+
+
+                        <li><a href="javascript:nav('core/homepage/welcome.do','');"><i class="fa fa-circle-o"></i>
+                            <span>后台首页</span></a></li>
+
+
+                        <li><a href="javascript:nav('core/homepage/environment.do','');"><i class="fa fa-circle-o"></i>
+                            <span>系统信息</span></a></li>
+
+
+                        <li><a href="javascript:nav('core/homepage/notification_list.do','');"><i
+                                class="fa fa-circle-o"></i> <span>我的通知</span></a></li>
+
+
+                        <li><a href="javascript:nav('core/homepage/message_list.do','');"><i class="fa fa-circle-o"></i>
+                            <span>我的私信</span></a></li>
+
+
+                        <li><a href="javascript:nav('core/homepage/mail_inbox_list.do','');"><i
+                                class="fa fa-circle-o"></i> <span>系统消息</span></a></li>
+
+
+                        <li><a href="javascript:nav('core/homepage/personal_edit.do','');"><i
+                                class="fa fa-circle-o"></i> <span>密码修改</span></a></li>
+
+
+                    </ul>
+                </li>
+
+
+                <li class="treeview">
+                    <a href='javascript:;'><i class="glyphicon glyphicon-edit"></i> <span>内容管理</span>
+                        <span class="pull-right-container">
+			              <i class="fa fa-angle-left pull-right"></i>
+			            </span>
+                    </a>
+                    <ul class="treeview-menu">
+
+
+                        <li><a href="javascript:nav('core/info/list.do','core/info/left.do');"><i
+                                class="fa fa-circle-o"></i> <span>文档管理</span></a></li>
+
+
+                        <li><a href="javascript:nav('core/node/list.do','core/node/left.do?noSelect=true');"><i
+                                class="fa fa-circle-o"></i> <span>栏目管理</span></a></li>
+
+
+                        <li><a href="javascript:nav('core/comment/list.do','');"><i class="fa fa-circle-o"></i> <span>评论管理</span></a>
+                        </li>
+
+
+                        <li><a href="javascript:nav('ext/guestbook/list.do','');"><i class="fa fa-circle-o"></i> <span>留言板管理</span></a>
+                        </li>
+
+
+                        <li><a href="javascript:nav('ext/guestbook_type/list.do','');"><i class="fa fa-circle-o"></i>
+                            <span>留言板类别</span></a></li>
+
+
+                        <li><a href="javascript:nav('core/special/list.do','');"><i class="fa fa-circle-o"></i> <span>专题管理</span></a>
+                        </li>
+
+
+                        <li><a href="javascript:nav('core/special_category/list.do','');"><i class="fa fa-circle-o"></i>
+                            <span>专题类别</span></a></li>
+
+
+                        <li><a href="javascript:nav('core/attribute/list.do','');"><i class="fa fa-circle-o"></i> <span>文档属性</span></a>
+                        </li>
+
+
+                        <li><a href="javascript:nav('core/tag/list.do','');"><i class="fa fa-circle-o"></i>
+                            <span>TAG管理</span></a></li>
+
+
+                        <li><a href="javascript:nav('core/generation/html_index.do','');"><i class="fa fa-circle-o"></i>
+                            <span>生成管理</span></a></li>
+
+
+                    </ul>
+                </li>
+
+
+                <li class="treeview">
+                    <a href='javascript:;'><i class="fa fa-folder"></i> <span>文件管理</span>
+                        <span class="pull-right-container">
+			              <i class="fa fa-angle-left pull-right"></i>
+			            </span>
+                    </a>
+                    <ul class="treeview-menu">
+
+
+                        <li>
+                            <a href="javascript:nav('core/web_file_1/list.do','core/web_file_1/left.do?noSelect=true');"><i
+                                    class="fa fa-circle-o"></i> <span>模版文件</span></a></li>
+
+
+                        <li>
+                            <a href="javascript:nav('core/web_file_2/list.do','core/web_file_2/left.do?noSelect=true');"><i
+                                    class="fa fa-circle-o"></i> <span>上传文件</span></a></li>
+
+
+                    </ul>
+                </li>
+
+
+                <li class="treeview">
+                    <a href='javascript:;'><i class="glyphicon glyphicon-th"></i> <span>模块组件</span>
+                        <span class="pull-right-container">
+			              <i class="fa fa-angle-left pull-right"></i>
+			            </span>
+                    </a>
+                    <ul class="treeview-menu">
+
+
+                        <li><a href="javascript:nav('core/task/list.do','');"><i class="fa fa-circle-o"></i>
+                            <span>任务管理</span></a></li>
+
+
+                        <li><a href="javascript:nav('core/schedule_job/list.do','');"><i class="fa fa-circle-o"></i>
+                            <span>定时任务</span></a></li>
+
+
+                        <li><a href="javascript:nav('ext/collect/list.do','');"><i class="fa fa-circle-o"></i> <span>采集管理</span></a>
+                        </li>
+
+
+                        <li><a href="javascript:nav('core/sensitive_word/list.do','');"><i class="fa fa-circle-o"></i>
+                            <span>敏感词</span></a></li>
+
+
+                        <li><a href="javascript:nav('core/attachment/list.do','');"><i class="fa fa-circle-o"></i>
+                            <span>附件管理</span></a></li>
+
+
+                        <li><a href="javascript:nav('core/score_group/list.do','');"><i class="fa fa-circle-o"></i>
+                            <span>评分组</span></a></li>
+
+
+                        <li><a href="javascript:nav('ext/vote/list.do','');"><i class="fa fa-circle-o"></i>
+                            <span>投票管理</span></a></li>
+
+
+                        <li><a href="javascript:nav('ext/question/list.do','');"><i class="fa fa-circle-o"></i> <span>问卷调查</span></a>
+                        </li>
+
+
+                    </ul>
+                </li>
+
+
+                <li class="treeview">
+                    <a href='javascript:;'><i class="fa fa-plug"></i> <span>功能插件</span>
+                        <span class="pull-right-container">
+			              <i class="fa fa-angle-left pull-right"></i>
+			            </span>
+                    </a>
+                    <ul class="treeview-menu">
+
+
+                        <li><a href="javascript:nav('ext/friendlink_type/list.do','');"><i class="fa fa-circle-o"></i>
+                            <span>友情链接类别</span></a></li>
+
+
+                        <li><a href="javascript:nav('ext/friendlink/list.do','');"><i class="fa fa-circle-o"></i> <span>友情链接管理</span></a>
+                        </li>
+
+
+                        <li><a href="javascript:nav('ext/ad_slot/list.do','');"><i class="fa fa-circle-o"></i> <span>广告版位</span></a>
+                        </li>
+
+
+                        <li><a href="javascript:nav('ext/ad/list.do','');"><i class="fa fa-circle-o"></i>
+                            <span>广告管理</span></a></li>
+
+
+                        <li><a href="javascript:nav('plug/resume/list.do','');"><i class="fa fa-circle-o"></i> <span>简历管理</span></a>
+                        </li>
+
+
+                    </ul>
+                </li>
+
+
+                <li class="treeview">
+                    <a href='javascript:;'><i class="glyphicon glyphicon-stats"></i> <span>访问统计</span>
+                        <span class="pull-right-container">
+			              <i class="fa fa-angle-left pull-right"></i>
+			            </span>
+                    </a>
+                    <ul class="treeview-menu">
+
+
+                        <li><a href="javascript:nav('ext/visit_log/traffic_analysis.do','');"><i
+                                class="fa fa-circle-o"></i> <span>流量分析</span></a></li>
+
+
+                        <li><a href="javascript:nav('ext/visit_log/source_analysis.do','');"><i
+                                class="fa fa-circle-o"></i> <span>来源分析</span></a></li>
+
+
+                        <li><a href="javascript:nav('ext/visit_log/url_analysis.do','');"><i class="fa fa-circle-o"></i>
+                            <span>受访分析</span></a></li>
+
+
+                        <li><a href="javascript:nav('ext/visit_log/country_analysis.do','');"><i
+                                class="fa fa-circle-o"></i> <span>地域分析</span></a></li>
+
+
+                        <li><a href="javascript:nav('ext/visit_log/browser_analysis.do','');"><i
+                                class="fa fa-circle-o"></i> <span>浏览器分析</span></a></li>
+
+
+                        <li><a href="javascript:nav('ext/visit_log/os_analysis.do','');"><i class="fa fa-circle-o"></i>
+                            <span>操作系统分析</span></a></li>
+
+
+                        <li><a href="javascript:nav('ext/visit_log/device_analysis.do','');"><i
+                                class="fa fa-circle-o"></i> <span>设备分析</span></a></li>
+
+
+                        <li><a href="javascript:nav('ext/visit_log/list.do','');"><i class="fa fa-circle-o"></i> <span>访问日志</span></a>
+                        </li>
+
+
+                    </ul>
+                </li>
+
+
+                <li class="treeview">
+                    <a href='javascript:;'><i class="glyphicon glyphicon-user"></i> <span>用户权限</span>
+                        <span class="pull-right-container">
+			              <i class="fa fa-angle-left pull-right"></i>
+			            </span>
+                    </a>
+                    <ul class="treeview-menu">
+
+
+                        <li><a href="javascript:nav('core/user/list.do','');"><i class="fa fa-circle-o"></i>
+                            <span>用户管理</span></a></li>
+
+
+                        <li><a href="javascript:nav('core/role/list.do','');"><i class="fa fa-circle-o"></i>
+                            <span>角色管理</span></a></li>
+
+
+                        <li><a href="javascript:nav('core/member_group/list.do','');"><i class="fa fa-circle-o"></i>
+                            <span>会员组</span></a></li>
+
+
+                        <li><a href="javascript:nav('core/org/list.do','');"><i class="fa fa-circle-o"></i>
+                            <span>组织管理</span></a></li>
+
+
+                        <li><a href="javascript:nav('core/notification/list.do','');"><i class="fa fa-circle-o"></i>
+                            <span>通知管理</span></a></li>
+
+
+                        <li><a href="javascript:nav('core/message/list.do','');"><i class="fa fa-circle-o"></i> <span>私信管理</span></a>
+                        </li>
+
+
+                        <li><a href="javascript:nav('core/mail_outbox/list.do','');"><i class="fa fa-circle-o"></i>
+                            <span>系统消息管理</span></a></li>
+
+
+                        <li><a href="javascript:nav('ext/favorite/list.do','');"><i class="fa fa-circle-o"></i> <span>收藏管理</span></a>
+                        </li>
+
+
+                        <li><a href="javascript:nav('core/user_global/list.do','');"><i class="fa fa-circle-o"></i>
+                            <span>全局用户</span></a></li>
+
+
+                        <li><a href="javascript:nav('core/org_global/list.do','');"><i class="fa fa-circle-o"></i>
+                            <span>全局组织</span></a></li>
+
+
+                    </ul>
+                </li>
+
+
+                <li class="treeview">
+                    <a href='javascript:;'><i class="fa fa-cog"></i> <span>系统管理</span>
+                        <span class="pull-right-container">
+			              <i class="fa fa-angle-left pull-right"></i>
+			            </span>
+                    </a>
+                    <ul class="treeview-menu">
+
+
+                        <li><a href="javascript:nav('core/conf_site/base_edit.do','');"><i class="fa fa-circle-o"></i>
+                            <span>网站设置</span></a></li>
+
+
+                        <li><a href="javascript:nav('core/conf_global/base_edit.do','');"><i class="fa fa-circle-o"></i>
+                            <span>系统设置</span></a></li>
+
+
+                        <li><a href="javascript:nav('core/publish_point/list.do','');"><i class="fa fa-circle-o"></i>
+                            <span>发布点</span></a></li>
+
+
+                        <li><a href="javascript:nav('core/site/list.do','');"><i class="fa fa-circle-o"></i>
+                            <span>站点管理</span></a></li>
+
+
+                        <li><a href="javascript:nav('core/model/list.do','');"><i class="fa fa-circle-o"></i>
+                            <span>模型管理</span></a></li>
+
+
+                        <li><a href="javascript:nav('core/workflow_group/list.do','');"><i class="fa fa-circle-o"></i>
+                            <span>工作流组</span></a></li>
+
+
+                        <li><a href="javascript:nav('core/workflow/list.do','');"><i class="fa fa-circle-o"></i> <span>工作流</span></a>
+                        </li>
+
+
+                        <li><a href="javascript:nav('core/operation_log/list.do','');"><i class="fa fa-circle-o"></i>
+                            <span>操作日志</span></a></li>
+
+
+                    </ul>
+                </li>
+
+
+            </ul>
+            <!-- /.sidebar-menu -->
+        </section>
+        <!-- /.sidebar -->
+    </aside>
+
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper clearfix">
+        <div id="leftContentWrapper" class="pull-left" style="width:0;position:relative;">
+            <iframe class="" id="leftFrame" name="left" style="width:100%;min-height:100%;border:0;"
+                    src="blank.do"></iframe>
+        </div>
+        <div id="centerContentWrapper" class="" style="margin-left:0;position:relative;">
+            <iframe class="" id="centerFrame" name="center" scrolling="no" style="width:100%;min-height:100%;border:0;"
+                    src="core/homepage/welcome.do"></iframe>
+        </div>
+    </div>
+    <!-- /.content-wrapper -->
+
+</div>
+<!-- ./wrapper -->
+
+<script src="static/vendor/jquery/jquery.min.js"></script>
+<script src="static/vendor/bootstrap/js/bootstrap.min.js"></script>
+<script src="static/vendor/adminlte/js/app.min.js"></script>
+<script>
+    $(function () {
+        var getNotificationCount = function () {
+            $.get("core/notification/count.do", function (count) {
+                if (count && parseInt(count) > 0) {
+                    $("#notificationCount").text(count);
+                } else {
+                    $("#notificationCount").text("");
+                }
+            });
+        }
+        getNotificationCount();
+        setInterval(getNotificationCount, 120000);
+
+        $(".treeview-menu>li:not(.treeview)>a").click(function () {
+            $(this).parent().parent().find("li").removeClass("active");
+            $(this).parent().parent().parent().parent().find("li").not($(this).parent().parent().parent()[0]).removeClass("active");
+            $(this).parent().addClass("active");
+        });
+    });
+    //var leftFrame = window.frames['left'];
+    //var centerFrame = window.frames['center'];
+    function nav(centerUrl, leftUrl) {
+        //先移除内容，以免调整框架宽度时页面晃动
+        try {
+            $(window.frames['center'].document.body).empty();
+        } catch (ex) {
+        }
+
+        if (leftUrl) {
+            //$(window.frames['leftFrame'].document.body).empty();
+            if ($("#leftContentWrapper").css("width") != "220px") {
+                $("#leftContentWrapper").css("width", "220px");
+                $("#centerContentWrapper").css("margin-left", "220px");
+            }
+            window.frames['left'].location.href = leftUrl;
+        } else {
+            if ($("#leftContentWrapper").css("width") != "0px") {
+                $("#leftContentWrapper").css("width", "0px");
+                $("#centerContentWrapper").css("margin-left", "0px");
+                window.frames['left'].location.href = "blank.do";
+            }
+        }
+        window.frames['center'].location.href = centerUrl;
+    }
+
+    $(function () {
+        function contentResize() {
+            var minHeight = $(".content-wrapper").css("min-height");
+            $("#leftContentWrapper").css("min-height", minHeight);
+            $("#centerContentWrapper").css("min-height", minHeight);
+        }
+
+        contentResize();
+        $(window).resize(function () {
+            contentResize();
+        });
+        var centerFrame = document.getElementById("centerFrame");
+        var leftFrame = document.getElementById("leftFrame");
+        var frameHeightInterval = setInterval(function () {
+            try {
+                var centerHeight = $(window.frames['center'].document.body).height();
+                var leftHeight = $(window.frames['left'].document.body).height();
+                var minHeight = parseInt($(".content-wrapper").css("min-height")) - 5;
+                var height = centerHeight > leftHeight ? centerHeight : leftHeight;
+                height = height > minHeight ? height : minHeight;
+                centerFrame.height = height;
+                leftFrame.height = height;
+            } catch (ex) {
+                //clearInterval(frameHeightInterval);
+            }
+        }, 200);
+    })
+
+    function keepSession() {
+        $.get("/keep_session?d=" + new Date() * 1);
+    }
+
+    setInterval(keepSession, 600000);
+</script>
+</body>
+</html>
